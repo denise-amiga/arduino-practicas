@@ -10,9 +10,8 @@
 #define ELECTROIMAN_PIN 13
 
 char teclado[DIGITS_NUMBERS];
-int clave = 5555;
+int clave = 6666;
 int fails = 0;
-
 
 void updatestatus(int a, int b)
 {
@@ -81,11 +80,13 @@ void loop()
 	} else if (c > 0) {
 		Serial.println("reset time");
 	}
+
 	if (fails >= MAX_FAILS) {
 		fails = 0;
 		Serialprintf("Too many fails. Waiting %d s.\n", WAITING_FAILS);
 		delay(WAITING_FAILS * 1000);
 	}
+
 	delay(1000);
 	setColor(0, 0, 0, 0b1111);
 }
