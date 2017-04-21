@@ -14,9 +14,9 @@
 #define tiempo_zumbador2               15
 
 int pin4_status;
-int tiempo1;					// timer del pulsador_temporizado
-int tiempo2;					// timer del zumbador sonando
-int tiempo3;					// timer para poder tocar el zumbador
+int tiempo1;                                    // timer del pulsador_temporizado
+int tiempo2;                                    // timer del zumbador sonando
+int tiempo3;                                    // timer para poder tocar el zumbador
 bool zumbador_status = false;
 
 void setup()
