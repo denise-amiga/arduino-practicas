@@ -14,7 +14,7 @@
 #define initspeed               4
 
 void setColor(byte r, byte g, byte b, byte mask);
-void initLeds();
+void initLeds(int initdelay);
 void Serialprintf(const char *txt, ...);
 
 #endif

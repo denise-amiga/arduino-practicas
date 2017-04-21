@@ -1,6 +1,6 @@
 #include "myleds.h"
 
-void initLeds()
+void initLeds(int initdelay)
 {
 	digitalWrite(led1, LOW);
 	digitalWrite(led2, LOW);
@@ -18,6 +18,9 @@ void initLeds()
 	pinMode(ArPin, OUTPUT);
 	pinMode(AgPin, OUTPUT);
 	pinMode(AbPin, OUTPUT);
+
+	if (initdelay)
+		delay(initdelay);            //skip reset by serial init
 
 	////
 	////  red fade

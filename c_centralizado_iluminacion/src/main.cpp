@@ -10,8 +10,8 @@
 #define salida_zumbador                12
 
 #define tiempo_temporizador            20
-#define tiempo_zumbador1                5
-#define tiempo_zumbador2               15
+#define tiempo_zumbador1               10
+#define tiempo_zumbador2               20
 
 int pin4_status;
 int tiempo1;                                    // timer del pulsador_temporizado

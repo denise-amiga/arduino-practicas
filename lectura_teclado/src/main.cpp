@@ -42,7 +42,7 @@ void setup()
 	pinMode(ELECTROIMAN_PIN, OUTPUT);
 	digitalWrite(ELECTROIMAN_PIN, HIGH);
 
-	initLeds();
+	initLeds(2500);
 }
 
 void loop()
