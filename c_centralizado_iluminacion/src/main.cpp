@@ -10,8 +10,8 @@
 #define salida_zumbador                12
 
 #define tiempo_temporizador            20
-#define tiempo_zumbador1               10
-#define tiempo_zumbador2               20
+#define tiempo_zumbador1                5		// t. sonando - t. total
+#define tiempo_zumbador2               15
 
 int pin4_status;
 int tiempo1;                                    // timer del pulsador_temporizado
@@ -32,7 +32,7 @@ void setup()
 //        pinMode(i, OUTPUT);
 //        digitalWrite(i,LOW);
 //    }
-	initLeds();
+	initLeds(2500);
 }
 
 void loop()
