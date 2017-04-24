@@ -30,7 +30,7 @@ void loop()
 {
 // ********************************** Timbre ***********************************
 	LECTURAENTRADA(TIMBRE);
-	if (FLANCO_BAJADA(TIMBRE) && (pines[TIMBRE].tiempo == 0)) {     //
+	if (FLANCO_BAJADA(TIMBRE) && (pines[TIMBRE].tiempo == 0)) {     // hemos pulsado el timbre y el temp=0?
 		SALIDA_HIGH(TIMBRE);                                    // activamos el timbre
 		ACTUALIZASALIDA(TIMBRE);                                // actualiza la salida
 		Serialprintf("Temporizador Timbre: On\n");              // debug info
@@ -40,13 +40,13 @@ void loop()
 	}
 	ACTUALIZAENTRADA(TIMBRE);
 
-	if (pines[TIMBRE].flag2) {                              // ejecutamos este bloque? (al menos una vez,si pulsamos)
-		if (pines[TIMBRE].tiempo > TIMBRE_DELTA) {      // queda tiempo sonando el timbre?
-			Serialprintf("Timbre sonando\n");       // debug info (SI)
+	if (pines[TIMBRE].flag2) {                                                      // ejecutamos este bloque? (al menos una vez,si pulsamos)
+		if (pines[TIMBRE].tiempo > TIMBRE_DELTA) {                              // queda tiempo sonando el timbre?
+			Serialprintf("Timbre sonando\n");                               // debug info (SI)
 		} else {
-			SALIDA_LOW(TIMBRE);                     // desactivamos el timbre
-			Serialprintf("Timbre parado\n");        // debug info (NO)
-			pines[TIMBRE].flag2 = false;            // no volvemos a ejecutar este bloque
+			SALIDA_LOW(TIMBRE);                                             // desactivamos el timbre
+			Serialprintf("Timbre parado\n");                                // debug info (NO)
+			pines[TIMBRE].flag2 = false;                                    // no volvemos a ejecutar este bloque
 		}
 	}
 
@@ -80,13 +80,13 @@ void loop()
 
 // ********************************** Pasillo **********************************
 	LECTURAENTRADA(PASILLO);
-	if (FLANCO_BAJADA(PASILLO)) {                           // hemos pulsado el pasillo?
-		SALIDA_HIGH(PASILLO);                           // Encendemos el pasillo
+	if (FLANCO_BAJADA(PASILLO)) {                                                   // hemos pulsado el pasillo?
+		SALIDA_HIGH(PASILLO);                                                   // Encendemos el pasillo
 		ACTUALIZASALIDA(PASILLO);
-		Serialprintf("Pasillo: On\n");                  // debug info
-		Serialprintf("Temporizador Pasillo: On\n");     // debug info
-		pines[PASILLO].flag1 = true;                    // flag para el timer (pasillo)
-		pines[PASILLO].tiempo = PASILLO_TIMER;          // ponemos el timer
+		Serialprintf("Pasillo: On\n");                                          // debug info
+		Serialprintf("Temporizador Pasillo: On\n");                             // debug info
+		pines[PASILLO].flag1 = true;                                            // flag para el timer (pasillo)
+		pines[PASILLO].tiempo = PASILLO_TIMER;                                  // ponemos el timer
 	}
 	ACTUALIZAENTRADA(PASILLO);
 
@@ -147,7 +147,7 @@ void loop()
 		Serialprintf("Garage: %s\n", pines[GARAGE].salida ? "On" : "Off");                      // debug info
 		Serialprintf("Temporizador Garage: %s\n", pines[GARAGE].salida ? "On" : "Off");         // debug info
 		pines[GARAGE].flag1 = pines[GARAGE].salida;                                             // flag para el timer (Garage)
-		pines[GARAGE].tiempo = GARAGE_TIMER;                                                     // ponemos el timer
+		pines[GARAGE].tiempo = GARAGE_TIMER;                                                    // ponemos el timer
 	}
 	ACTUALIZAENTRADA(GARAGE);
 
