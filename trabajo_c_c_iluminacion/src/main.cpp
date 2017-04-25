@@ -1,3 +1,4 @@
+#define DEBUG 1
 #include "myleds.h"
 #include "pines_iluminacion.h"
 
