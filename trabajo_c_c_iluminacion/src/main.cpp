@@ -2,7 +2,7 @@
 #include "myleds.h"
 #include "pines_iluminacion.h"
 
-enum zonas { TIMBRE, COCINA, COMEDOR, PASILLO, DORMITORIO1, DORMITORIO2, GARAGE, BANO1, BANO2, FINAL };
+enum zonas { TIMBRE, COCINA, COMEDOR, PASILLO, DORMITORIO1, DORMITORIO2, GARAJE, BANO1, BANO2, FINAL };
 
 typedef struct {
 	int	tiempo;         // tiempo para los temporizadores
@@ -46,6 +46,7 @@ void loop()
 			Serialprintf("Timbre sonando\n");                               // debug info (SI)
 		} else {
 			SALIDA_LOW(TIMBRE);                                             // desactivamos el timbre
+			ACTUALIZASALIDA(TIMBRE);                                // actualiza la salida
 			Serialprintf("Timbre parado\n");                                // debug info (NO)
 			pines[TIMBRE].flag2 = false;                                    // no volvemos a ejecutar este bloque
 		}
@@ -106,8 +107,8 @@ void loop()
 
 // ******************************** Dormitorio1 ********************************
 	LECTURAENTRADA(DORMITORIO1);
-	if (FLANCO_BAJADA(DORMITORIO1)) {                                                       // hemos pulsado el Dormitorio1?
-		SALIDA_CONMUTA(DORMITORIO1);                                                    // conmutamos el Dormitorio1
+	if (FLANCO_BAJADA(DORMITORIO1)) {                                                       // hemos pulsado el dormitorio1?
+		SALIDA_CONMUTA(DORMITORIO1);                                                    // conmutamos el dormitorio1
 		ACTUALIZASALIDA(DORMITORIO1);
 		Serialprintf("Dormitorio1: %s\n", pines[DORMITORIO1].salida ? "On" : "Off");    // debug info
 	}
@@ -115,19 +116,19 @@ void loop()
 
 // ******************************** Dormitorio2 ********************************
 	LECTURAENTRADA(DORMITORIO2);
-	if (FLANCO_BAJADA(DORMITORIO2)) {                                                                       // hemos pulsado el Dormitorio2?
-		SALIDA_CONMUTA(DORMITORIO2);                                                                    // conmutamos el Dormitorio2
+	if (FLANCO_BAJADA(DORMITORIO2)) {                                                                       // hemos pulsado el dormitorio2?
+		SALIDA_CONMUTA(DORMITORIO2);                                                                    // conmutamos el dormitorio2
 		ACTUALIZASALIDA(DORMITORIO2);                                                                   //
 		Serialprintf("Dormitorio2: %s\n", pines[DORMITORIO2].salida ? "On" : "Off");                    // debug info
 		Serialprintf("Temporizador Dormitorio2: %s\n", pines[DORMITORIO2].salida ? "On" : "Off");       // debug info
-		pines[DORMITORIO2].flag1 = pines[DORMITORIO2].salida;                                           // flag para el timer (Dormitorio2)
+		pines[DORMITORIO2].flag1 = pines[DORMITORIO2].salida;                                           // flag para el timer (dormitorio2)
 		pines[DORMITORIO2].tiempo = DORM2_TIMER;                                                        // ponemos el timer
 	}
 	ACTUALIZAENTRADA(DORMITORIO2);
 
 	if (pines[DORMITORIO2].flag1) {                                                         // ejecutamos este bloque? (al menos una vez,si)
-		if (pines[DORMITORIO2].tiempo > 0) {                                            // queda tiempo del temporizador del Dormitorio2?
-			Serialprintf("Temp. Dormitorio2 %d\n", pines[DORMITORIO2].tiempo);      // debug info (Dormitorio2 timer)
+		if (pines[DORMITORIO2].tiempo > 0) {                                            // queda tiempo del temporizador del dormitorio2?
+			Serialprintf("Temp. Dormitorio2 %d\n", pines[DORMITORIO2].tiempo);      // debug info (dormitorio2 timer)
 			pines[DORMITORIO2].tiempo--;                                            // actualizamos el timer
 		} else {
 			Serialprintf("Temporizador Dormitorio2: Off\n");                        // debug info (se acabo el tiempo)
@@ -141,29 +142,29 @@ void loop()
 	}
 
 // ********************************** Garage ***********************************
-	LECTURAENTRADA(GARAGE);
-	if (FLANCO_BAJADA(GARAGE)) {                                                                    // hemos pulsado el Garage?
-		SALIDA_CONMUTA(GARAGE);                                                                 // conmutamos el Dormitorio2
-		ACTUALIZASALIDA(GARAGE);                                                                //
-		Serialprintf("Garage: %s\n", pines[GARAGE].salida ? "On" : "Off");                      // debug info
-		Serialprintf("Temporizador Garage: %s\n", pines[GARAGE].salida ? "On" : "Off");         // debug info
-		pines[GARAGE].flag1 = pines[GARAGE].salida;                                             // flag para el timer (Garage)
-		pines[GARAGE].tiempo = GARAGE_TIMER;                                                    // ponemos el timer
+	LECTURAENTRADA(GARAJE);
+	if (FLANCO_BAJADA(GARAJE)) {                                                                    // hemos pulsado el garajegaraje?
+		SALIDA_CONMUTA(GARAJE);                                                                 // conmutamos el garaje
+		ACTUALIZASALIDA(GARAJE);                                                                //
+		Serialprintf("Garaje: %s\n", pines[GARAJE].salida ? "On" : "Off");                      // debug info
+		Serialprintf("Temporizador Garaje: %s\n", pines[GARAJE].salida ? "On" : "Off");         // debug info
+		pines[GARAJE].flag1 = pines[GARAJE].salida;                                             // flag para el timer (garaje)
+		pines[GARAJE].tiempo = GARAJE_TIMER;                                                    // ponemos el timer
 	}
-	ACTUALIZAENTRADA(GARAGE);
+	ACTUALIZAENTRADA(GARAJE);
 
-	if (pines[GARAGE].flag1) {                                                      // ejecutamos este bloque? (al menos una vez,si)
-		if (pines[GARAGE].tiempo > 0) {                                         // queda tiempo del temporizador del Garage?
-			Serialprintf("Temp. Garage %d\n", pines[GARAGE].tiempo);        // debug info (Garage timer)
-			pines[GARAGE].tiempo--;                                         // actualizamos el timer
+	if (pines[GARAJE].flag1) {                                                      // ejecutamos este bloque? (al menos una vez,si)
+		if (pines[GARAJE].tiempo > 0) {                                         // queda tiempo del temporizador del garaje?
+			Serialprintf("Temp. Garaje %d\n", pines[GARAJE].tiempo);        // debug info (garaje timer)
+			pines[GARAJE].tiempo--;                                         // actualizamos el timer
 		} else {
-			Serialprintf("Temporizador Garage: Off\n");                     // debug info (se acabo el tiempo)
-			if (pines[GARAGE].salida == HIGH) {                             // esta encendida la luz?
-				SALIDA_LOW(GARAGE);                                     // la apagamos en caso afirmativo
-				ACTUALIZASALIDA(GARAGE);
-				Serialprintf("Garage: Off (Temporizador)\n");           // debug info
+			Serialprintf("Temporizador Garaje: Off\n");                     // debug info (se acabo el tiempo)
+			if (pines[GARAJE].salida == HIGH) {                             // esta encendida la luz?
+				SALIDA_LOW(GARAJE);                                     // la apagamos en caso afirmativo
+				ACTUALIZASALIDA(GARAJE);
+				Serialprintf("Garaje: Off (Temporizador)\n");           // debug info
 			}
-			pines[GARAGE].flag1 = false;                                    // no volvemos a ejecutar este bloque
+			pines[GARAJE].flag1 = false;                                    // no volvemos a ejecutar este bloque
 		}
 	}
 

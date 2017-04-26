@@ -9,7 +9,7 @@
 
 #define PASILLO_TIMER           15                                              // 15 segundos
 #define DORM2_TIMER             10                                              // 30 segundos
-#define GARAGE_TIMER            10                                              // 10 segundos
+#define GARAJE_TIMER            10                                              // 10 segundos
 #else
 #define TIMBRE_TIMER            30                                              // tiempo antes de poder volver a pulsar
 #define TIMBRE_SONANDO          5                                               // tiempo sonando
@@ -17,7 +17,7 @@
 
 #define PASILLO_TIMER           60                                              // 1 minuto (1*60)
 #define DORM2_TIMER             1800                                            // 30 minutos (30*60)
-#define GARAGE_TIMER            600                                             // 10 minutos (10*60)
+#define GARAJE_TIMER            600                                             // 10 minutos (10*60)
 #endif
 //******************************************************************************
 
