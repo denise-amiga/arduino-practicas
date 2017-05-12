@@ -9,9 +9,6 @@ void setup() {
     digitalWrite(3,HIGH);
     digitalWrite(4,HIGH);
     digitalWrite(5,HIGH);
-//    pinMode(3, OUTPUT);
-//    digitalWrite(2,LOW);
-//    digitalWrite(3,LOW);
 }
 
 void loop() {
